@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /DockerConfig/Traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - /DockerConfig/Traefik/conf/:/etc/traefik/conf/
-      - /DockerConfig/Traefik/certs/:/etc/traefik/certs/
+      - /DockerConfig/Traefik/certs/:/etc/traefik/certs/:rw
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     networks:
