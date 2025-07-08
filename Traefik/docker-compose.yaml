@@ -2,6 +2,12 @@ services:
   traefik:
     container_name: traefik
     image: traefik:3.4.3
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      #- "--entryPoints.web.address=:80"
     ports:
       - 80:80
       - 443:443
@@ -10,12 +16,11 @@ services:
       - /DockerConfig/Traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - /DockerConfig/Traefik/conf/:/etc/traefik/conf/
       - /DockerConfig/Traefik/certs/:/etc/traefik/certs/
-    environment:
-      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
+    #environment:
+      #- CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     networks:
       - frontend
     restart: unless-stopped
-
 networks:
   frontend:
     external: true
