@@ -12,7 +12,7 @@ services:
       - "traefik.http.routers.nginx-demo-1-https.tls.certresolver=cloudflare"
     networks:
       - frontend
-    restart: unless-stoppedv  
+    restart: unless-stopped  
 networks:
   frontend:
     external: true
