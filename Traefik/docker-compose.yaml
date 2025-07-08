@@ -11,8 +11,8 @@ services:
       - /DockerConfig/Traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - /DockerConfig/Traefik/conf/:/etc/traefik/conf/
       - /DockerConfig/Traefik/certs/:/etc/traefik/certs/
-    #environment:
-      #- CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
+    environment:
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     networks:
       - frontend
     restart: unless-stopped
