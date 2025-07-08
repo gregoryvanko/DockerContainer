@@ -11,7 +11,7 @@ services:
       - ./config/conf/:/etc/traefik/conf/
       - ./config/certs/:/etc/traefik/certs/
     environment:
-      - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     networks:
       - frontend
     restart: unless-stopped
