@@ -6,6 +6,7 @@ services:
       - /DockerConfig/Nginx/default.conf:/etc/nginx/conf.d/default.conf
       - /DockerConfig/Nginx/html:/usr/share/nginx/html
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
       - "traefik.http.routers.nginx-demo-1-https.rule=Host(`demo1.test.gregvanko.com`)"
       - "traefik.http.routers.nginx-demo-1-https.tls=true"
