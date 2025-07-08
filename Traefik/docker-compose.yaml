@@ -7,9 +7,9 @@ services:
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - ./config/conf/:/etc/traefik/conf/
-      - ./config/certs/:/etc/traefik/certs/
+      - /DockerConfig/Traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - /DockerConfig/Traefik/conf/:/etc/traefik/conf/
+      - /DockerConfig/Traefik/certs/:/etc/traefik/certs/
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     networks:
