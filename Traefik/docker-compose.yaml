@@ -13,6 +13,13 @@ services:
       - /DockerConfig/Traefik/certs/:/etc/traefik/certs/:rw
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-https.entrypoints=websecure"
+      - "traefik.http.routers.traefik-https.rule=Host(`traefik.test.gregvanko.com`)"
+      - "traefik.http.services.traefik-https.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik-https.tls=true"
+      - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped  
