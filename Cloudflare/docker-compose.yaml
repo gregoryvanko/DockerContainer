@@ -6,7 +6,6 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN:?error}
-    network_mode: host
     networks:
       - frontend
 
