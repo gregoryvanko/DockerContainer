@@ -7,12 +7,12 @@ services:
         source: Nas-Docker
         target : /etc/nginx/conf.d/
         volume :
-          subpath: Test/Nginx1/
+          subpath: Nginx1/
       - type : volume
         source: Nas-Docker
         target : /usr/share/nginx/html/
         volume :
-          subpath: Test/Nginx1/html
+          subpath: Nginx1/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
