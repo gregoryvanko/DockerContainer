@@ -3,12 +3,20 @@ services:
     image: nginx:1.25.5-alpine
     container_name: nginx1
     volumes:
-      - /DockerConfig/Nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - /DockerConfig/Nginx/html:/usr/share/nginx/html
+      - type : volume
+        source: Nas-Docker
+        target : /etc/nginx/conf.d/
+        volume :
+          subpath: Test/Nginx1/
+      - type : volume
+        source: Nas-Docker
+        target : /usr/share/nginx/html/
+        volume :
+          subpath: Test/Nginx1/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
-      - "traefik.http.routers.nginx-demo-1-https.rule=Host(`demo1.test.gregvanko.com`) || Host(`demo1-test.gregvanko.com`)"
+      - "traefik.http.routers.nginx-demo-1-https.rule=Host(`demo1.test.gregvanko.com`) || Host(`demo1-test.gregvanko.com`) "
       - "traefik.http.routers.nginx-demo-1-https.tls=true"
       - "traefik.http.routers.nginx-demo-1-https.tls.certresolver=cloudflare"
     networks:
@@ -17,3 +25,6 @@ services:
 networks:
   frontend:
     external: true
+volumes:
+  Nas-Docker:
+    external : true
