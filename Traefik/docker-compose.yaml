@@ -13,7 +13,7 @@ services:
         source: Nas-Docker
         target : /etc/traefik/
         volume :
-          subpath: Test/Traefik/
+          subpath: Traefik/
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     labels:
