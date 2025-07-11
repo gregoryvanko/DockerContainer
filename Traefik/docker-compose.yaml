@@ -8,9 +8,12 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /DockerConfig/Traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - /DockerConfig/Traefik/conf/:/etc/traefik/conf/:rw
-      - /DockerConfig/Traefik/certs/:/etc/traefik/certs/:rw
+
+      - type : volume
+        source: Nas-Docker
+        target : /etc/traefik/
+        volume :
+          subpath: Test/Traefik/
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     labels:
@@ -26,3 +29,6 @@ services:
 networks:
   frontend:
     external: true
+volumes:
+  Nas-Docker:
+    external : true
