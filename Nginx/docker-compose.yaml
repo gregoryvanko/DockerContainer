@@ -3,12 +3,16 @@ services:
     image: nginx:1.25.5-alpine
     container_name: nginx1
     volumes:
-      - /DockerLocal/Nginx1/default.conf:/etc/nginx/conf.d/default.conf
+      - type : volume
+        source: Nas-Docker-Test
+        target : /etc/nginx/conf.d/
+        volume :
+          subpath: Nginx1/Conf/
       - type : volume
         source: Nas-Docker-Test
         target : /usr/share/nginx/html/
         volume :
-          subpath: Nginx1/html
+          subpath: Nginx1/html/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
