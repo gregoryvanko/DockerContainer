@@ -4,6 +4,5 @@ Serveur web de test
 Avant de déployer le container, il faut créer :
 - un reseau externe frontend
 - un volume externe Nas-Docker-Test : c'est une volume NFS sur un Nas
-- sur le serveur du container
-  - l'arborescence de dossier /DockerLocal/Nginx1/
-  - enregister le fichier default.conf sous /DockerLocal/Nginx1/default.conf
+- enregister sur le Nas le fichier default.conf sous Nas-Docker-Test/Nginx1/Conf/default.conf
+- créer un fichier index.html de test sur le Nas sous Nas-Docker-Test/Nginx1/Html/index.html
