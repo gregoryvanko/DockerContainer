@@ -1,0 +1,19 @@
+services:
+  ubuntu:
+    image: ubuntu:latest
+    container_name: ubuntu
+    volumes:
+      - Nas-Docker-Test:/Nas-Docker-Test
+      - Nas-Data:/Nas-Data
+    networks:
+      - frontend
+    restart: unless-stopped
+    command: ["sleep","infinity"]
+networks:
+  frontend:
+    external: true
+volumes:
+  Nas-Docker-Test:
+    external : true
+  Nas-Data:
+    external : true
