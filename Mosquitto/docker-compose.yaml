@@ -1,0 +1,27 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - type : volume
+        source: Nas-Docker
+        target : /mosquitto/config:rw
+        volume :
+          subpath: Mosquitto/Config
+      - type : volume
+        source: Nas-Docker
+        target : /mosquitto/data:rw
+        volume :
+          subpath: Mosquitto/Data
+    networks:
+      - frontend
+    restart: unless-stopped
+networks:
+  frontend:
+    external: true
+volumes:
+  Nas-Docker:
+    external : true
