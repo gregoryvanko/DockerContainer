@@ -12,6 +12,6 @@ Dans le fichier docker compose il faut changer:
 - le nom des routes traefik de la section labels
 - le nom du host traefik de la section labels
 ## Variable d'environnement
-|Variable|Definition
+|Variable|Definition|
 |---|----|
 |CF_DNS_API_TOKEN|API Key CloudFlare pour changer une valeur du DNS afin de vérifier et créer le certificat TLS pour les routs HTTPS|
