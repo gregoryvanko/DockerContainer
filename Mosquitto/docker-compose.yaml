@@ -18,11 +18,11 @@ services:
           subpath: Mosquitto/Data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik-https.entrypoints=websecure"
-      - "traefik.http.routers.traefik-https.rule=Host(`mqtt.test.gregvanko.com`)"
-      - "traefik.http.services.traefik-https.loadbalancer.server.port=8081"
-      - "traefik.http.routers.traefik-https.tls=true"
-      - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.mqtt-https.entrypoints=websecure"
+      - "traefik.http.routers.mqtt-https.rule=Host(`mqtt.test.gregvanko.com`)"
+      - "traefik.http.services.mqtt-https.loadbalancer.server.port=8081"
+      - "traefik.http.routers.mqtt-https.tls=true"
+      - "traefik.http.routers.mqtt-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped
