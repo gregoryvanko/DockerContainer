@@ -4,12 +4,11 @@ Ce conteneur sert de reverse proxy
 Avant de déployer le container, il faut créer:
 - un reseau externe frontend
 - le fichier "traefik.yaml" sous ./Config/traefik.yaml
-- les répertoires "conf" sous ./Config/conf/
+- le répertoire "conf" sous ./Config/conf/
 - les répertoires "certs" sous ./Config/certs/
 - le fichier .env avec sont contenu
 
 Dans le fichier docker compose il faut changer:
-- le nom des routes traefik de la section labels
 - le nom du host traefik de la section labels
 ## Variable d'environnement
 |Variable|Definition|
