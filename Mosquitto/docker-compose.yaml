@@ -8,12 +8,12 @@ services:
     volumes:
       - type : volume
         source: Nas-Docker
-        target : /mosquitto/config:rw
+        target : /mosquitto/config
         volume :
           subpath: Mosquitto/Config
       - type : volume
         source: Nas-Docker
-        target : /mosquitto/data:rw
+        target : /mosquitto/data
         volume :
           subpath: Mosquitto/Data
     labels:
