@@ -16,6 +16,13 @@ services:
         target : /mosquitto/data:rw
         volume :
           subpath: Mosquitto/Data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-https.entrypoints=websecure"
+      - "traefik.http.routers.traefik-https.rule=Host(`mqtt.test.gregvanko.com`)"
+      - "traefik.http.services.traefik-https.loadbalancer.server.port=9001"
+      - "traefik.http.routers.traefik-https.tls=true"
+      - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped
