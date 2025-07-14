@@ -8,12 +8,9 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-
-      - type : volume
-        source: Nas-Docker
-        target : /etc/traefik/
-        volume :
-          subpath: Traefik/
+      - ./Config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./Config/conf/:/etc/traefik/conf/
+      - ./Config/certs/:/etc/traefik/certs/
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN:?error}
     labels:
@@ -25,10 +22,7 @@ services:
       - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
     networks:
       - frontend
-    restart: unless-stopped  
+    restart: unless-stopped
 networks:
   frontend:
     external: true
-volumes:
-  Nas-Docker:
-    external : true
