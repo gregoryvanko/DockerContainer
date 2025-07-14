@@ -6,11 +6,10 @@ services:
       - 1883:1883 #default mqtt port
       - 8081:8081 #default mqtt port for websockets
     volumes:
-      - type : volume
-        source: Nas-Docker-Test
-        target : /mosquitto/config
-        volume :
-          subpath: Mosquitto/Config
+      - ./Config/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./Config/config:/mosquitto/config:rw
+      - ./Config/data:/mosquitto/data:rw
+      - ./Config/log:/mosquitto/log:rw
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mqtt-https.entrypoints=websecure"
@@ -24,6 +23,3 @@ services:
 networks:
   frontend:
     external: true
-volumes:
-  Nas-Docker-Test:
-    external : true
