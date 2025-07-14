@@ -4,7 +4,7 @@ services:
     container_name: mosquitto
     ports:
       - "1883:1883" #default mqtt port
-      - "9001:9001" #default mqtt port for websockets
+      - "8081:8081" #default mqtt port for websockets
     volumes:
       - type : volume
         source: Nas-Docker
@@ -20,7 +20,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik-https.entrypoints=websecure"
       - "traefik.http.routers.traefik-https.rule=Host(`mqtt.test.gregvanko.com`)"
-      - "traefik.http.services.traefik-https.loadbalancer.server.port=9001"
+      - "traefik.http.services.traefik-https.loadbalancer.server.port=8081"
       - "traefik.http.routers.traefik-https.tls=true"
       - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
     networks:
