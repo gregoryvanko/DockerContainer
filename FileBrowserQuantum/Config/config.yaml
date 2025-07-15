@@ -32,6 +32,7 @@ auth:
       enabled: true
       minLength: 7  # set min password length requirement -- defaults to 5 if unset
       signup: false
+  adminUsername: admin
 integrations:
   media:
     ffmpegPath: "/usr/local/bin" # wherever you have both ffmpeg and ffprobe installed at
