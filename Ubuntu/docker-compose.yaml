@@ -4,6 +4,7 @@ services:
     container_name: ubuntu
     volumes:
       - nginx_Nas-Docker-Test-Nginx:/Nas-Docker-Test-Nginx
+      - fbquantumNas-Docker-Data:/Docker-Data
     networks:
       - frontend
     restart: unless-stopped
@@ -13,4 +14,6 @@ networks:
     external: true
 volumes:
   nginx_Nas-Docker-Test-Nginx: #volume pour les fichier html du container nginx
+    external : true
+  fbquantum_Nas-Docker-Data: # Volume pour les fichiers Data du container fbquantum
     external : true
