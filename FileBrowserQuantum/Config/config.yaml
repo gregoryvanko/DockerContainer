@@ -1,0 +1,52 @@
+server:
+  port: 80
+  baseURL:  "/"
+  logging:
+    - levels: "warning"
+      apiLevels: "info" 
+  sources:
+    - path: "/folder"
+      # name: "mysource"             # optional, otherwise the source gets named the folder name
+      config:
+        defaultUserScope: "/Users"   # include leading slash
+        defaultEnabled: false         # this gives the source to all users by default.
+        createUserDir: true          # "/subfolder/username" directory will be created
+        disableIndexing: false         # if set to true, nothing gets indexed but is still viewable in the UI
+  # externalUrl: ""                         # used by share links if set
+  # internalUrl: ""                         # used by integrations if set, this is the url that an integration service will use to communicate with filebrowser
+  cacheDir: "tmp"                         # path to the cache directory, used for thumbnails and other cached files
+  maxArchiveSize: 5                      # max pre-archive combined size of files/folder that are allowed to be archived (in GB)
+frontend:
+  name: "My FileBrowser"                  # display name
+  disableDefaultLinks: false              # disable default links in the sidebar
+  disableUsedPercentage: true            # disable used percentage for the sources in the sidebar
+  externalLinks:
+    - text: my home page                  # the text to display on the link  validate:required
+      title: my home page                 # the title to display on hover
+      url: https://domain.com/            # the url to link to  validate:required
+  disableNavButtons: false                # disable the nav buttons in the sidebar
+auth:
+  methods:
+    noauth: false
+    password:
+      enabled: true
+      minLength: 7  # set min password length requirement -- defaults to 5 if unset
+      signup: false
+integrations:
+  media:
+    ffmpegPath: "/usr/local/bin" # wherever you have both ffmpeg and ffprobe installed at
+userDefaults:
+  preview:
+    image: false
+    popup: false
+    video: false
+    office: false
+    highQuality: false
+  darkMode: true
+  disableSettings: false
+  singleClick: false
+  permissions:
+    admin: false
+    modify: false
+    share: false
+    api: false
