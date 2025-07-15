@@ -13,7 +13,7 @@ server:
       config:
         defaultUserScope: "/Users"   # include leading slash
         defaultEnabled: false         # this gives the source to all users by default.
-        createUserDir: true          # "/subfolder/username" directory will be created
+        createUserDir: true          # "/Users/username" directory will be created
         disableIndexing: false         # if set to true, nothing gets indexed but is still viewable in the UI
   # externalUrl: ""                         # used by share links if set
   # internalUrl: ""                         # used by integrations if set, this is the url that an integration service will use to communicate with filebrowser
