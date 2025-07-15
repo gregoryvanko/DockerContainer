@@ -1,0 +1,33 @@
+services:
+  fbquantum:
+    image: gtstef/filebrowser:latest
+    container_name: fbquantum
+    environment:
+      FILEBROWSER_CONFIG: "data/config.yaml"
+      FILEBROWSER_ADMIN_PASSWORD: admin
+    volumes:
+      - ./Config:/home/filebrowser/data
+      - ./Config/tmp/:/home/filebrowser/tmp/
+      - Nas-Docker-Data:/folder
+    ports:
+      - 80:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fbquantum-https.entrypoints=websecure"
+      - "traefik.http.routers.fbquantum-https.tls=true"
+      - "traefik.http.routers.fbquantum-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.fbquantum-https.rule=Host(`fbquantum.test.gregvanko.com`)"
+      - "traefik.http.services.fbquantum-https.loadbalancer.server.port=80"
+    networks:
+      - frontend
+    restart: unless-stopped
+networks:
+  frontend:
+    external: true
+volumes:
+  Nas-Docker-Data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.10.23,rw,nolock
+      device: ":/var/nfs/shared/Data"
