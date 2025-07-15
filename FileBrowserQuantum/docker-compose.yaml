@@ -10,7 +10,7 @@ services:
       - ./Config/tmp/:/home/filebrowser/tmp/
       - Nas-Docker-Data:/folder
     ports:
-      - 80:80
+      - 9080:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.fbquantum-https.entrypoints=websecure"
