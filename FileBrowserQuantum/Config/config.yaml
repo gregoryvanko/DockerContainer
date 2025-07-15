@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 9080
   baseURL:  "/"
   disablePreviews: true                  # disable all previews thumbnails, simple icons will be used
   disablePreviewResize: true             # disable resizing of previews for faster loading over slow connections
