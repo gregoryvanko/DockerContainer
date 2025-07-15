@@ -4,7 +4,7 @@ Ce container est un serveur web de test
 Avant de déployer le container, il faut créer :
 - un reseau externe frontend
 - le fichier "default.conf" sous ./Config/default.conf
-- le fichier index.html de test sur le Nas sous Nas-Docker/Test/Nginx/Html/index.html
+- le fichier index.html de test sur le Nas sous Docker/Test/Nginx/Html/index.html
 
 Dans le fichier docker compose il faut changer:
 - le nom du host traefik de la section labels
