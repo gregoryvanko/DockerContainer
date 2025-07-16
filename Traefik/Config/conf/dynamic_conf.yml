@@ -1,0 +1,18 @@
+http:
+  routers:
+    # Define a connection between requests and services
+    to-hydro:
+      rule: "Host(`hydro.vanko.be`)"
+      # If the rule matches, forward to the whoami service (declared below)
+      service: hydro
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: cloudflare
+
+  services:
+    # Define how to reach an existing service on our infrastructure
+    hydro:
+      loadBalancer:
+        servers:
+        - url: http://192.168.30.17:1880
