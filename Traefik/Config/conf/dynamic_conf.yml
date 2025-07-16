@@ -9,6 +9,14 @@ http:
         - "websecure"
       tls:
         certResolver: cloudflare
+    to-domo:
+      rule: "Host(`domo.vanko.be`)"
+      # If the rule matches, forward to the whoami service (declared below)
+      service: domo
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: cloudflare
 
   services:
     # Define how to reach an existing service on our infrastructure
@@ -16,3 +24,7 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.30.17:1880
+    domo:
+      loadBalancer:
+        servers:
+        - url: http://192.168.30.11:1880
