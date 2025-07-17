@@ -6,16 +6,20 @@ services:
     volumes:
       - ./Config/config:/config
       - ./Config/cache:/cache
-      - type: bind
-        source: /path/to/media
-        target: /media
-        read_only: true
-      - type: bind
-        source: /path/to/media2
-        target: /media2
-        read_only: true
+      - Nas-Docker-Vide:/media
+     # - type: bind
+     #   source: /path/to/media
+     #   target: /media
+     #   read_only: true
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     environment:
       - JELLYFIN_PublishedServerUrl=http://example.com
     network_mode: 'host'
+volumes:
+  Nas-Docker-Video:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.10.23,ro,nolock
+      device: ":/var/nfs/shared/Videos"
