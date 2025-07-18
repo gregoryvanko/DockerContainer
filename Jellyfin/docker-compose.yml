@@ -12,6 +12,16 @@ services:
      #   source: /path/to/media
      #   target: /media
      #   read_only: true
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.entryPoints=websecure
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.gregvanko.com`)
+      - traefik.http.routers.jellyfin.tls=true
+      - traefik.http.routers.jellyfin.tls.certResolver=cloudflare
+      ## Middleware
+      - 'traefik.http.routers.jellyfin.middlewares=jellyfin-mw'
+      #### The customResponseHeaders option lists the Header names and values to apply to the response.
+      - 'traefik.http.middlewares.jellyfin-mw.headers.customResponseHeaders.X-Robots-Tag=noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex'
     restart: unless-stopped
     environment:
       - PUID=1000
