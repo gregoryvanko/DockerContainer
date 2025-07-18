@@ -29,6 +29,9 @@ services:
       - JELLYFIN_PublishedServerUrl=http://example.com
     networks:
       - frontend
+networks:
+  frontend:
+    external: true
 volumes:
   Nas-Docker-Video:
     driver: local
