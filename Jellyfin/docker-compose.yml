@@ -7,7 +7,7 @@ services:
     volumes:
       - ./Config/config:/config
       - ./Config/cache:/cache
-      - Nas-Docker-Vide:/media
+      - Nas-Docker-Video:/media
      # - type: bind
      #   source: /path/to/media
      #   target: /media
