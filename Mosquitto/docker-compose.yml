@@ -13,13 +13,14 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mqtt-https.entrypoints=websecure"
-      - "traefik.http.routers.mqtt-https.rule=Host(`mqtt-test.gregvanko.com`)"
+      - "traefik.http.routers.mqtt-https.rule=Host(`mqtt.vanko.be`)"
       - "traefik.http.services.mqtt-https.loadbalancer.server.port=8081"
       - "traefik.http.routers.mqtt-https.tls=true"
       - "traefik.http.routers.mqtt-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped
+
 networks:
   frontend:
     external: true
