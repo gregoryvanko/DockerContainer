@@ -8,15 +8,17 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
-      - "traefik.http.routers.nginx-demo-1-https.rule=Host(`demo1.test.gregvanko.com`) || Host(`demo1-test.gregvanko.com`) "
+      - "traefik.http.routers.nginx-demo-1-https.rule=Host(`demo1.test.gregvanko.com`) || Host(`demo1.vanko.be`) "
       - "traefik.http.routers.nginx-demo-1-https.tls=true"
       - "traefik.http.routers.nginx-demo-1-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped
+
 networks:
   frontend:
     external: true
+
 volumes:
   Nas-Docker-Test-Nginx:
     driver: local
