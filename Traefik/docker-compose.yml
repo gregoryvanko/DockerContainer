@@ -16,13 +16,14 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik-https.entrypoints=websecure"
-      - "traefik.http.routers.traefik-https.rule=Host(`traefik-test.gregvanko.com`)"
+      - "traefik.http.routers.traefik-https.rule=Host(`traefik.vanko.be`)"
       - "traefik.http.services.traefik-https.loadbalancer.server.port=8080"
       - "traefik.http.routers.traefik-https.tls=true"
       - "traefik.http.routers.traefik-https.tls.certresolver=cloudflare"
     networks:
       - frontend
     restart: unless-stopped
+
 networks:
   frontend:
     external: true
