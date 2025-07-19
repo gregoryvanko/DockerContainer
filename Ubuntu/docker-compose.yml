@@ -9,9 +9,11 @@ services:
       - frontend
     restart: unless-stopped
     command: ["sleep","infinity"]
+
 networks:
   frontend:
     external: true
+
 volumes:
   nginx_Nas-Docker-Test-Nginx: #volume pour les fichier html du container nginx
     external : true
