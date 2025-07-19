@@ -15,7 +15,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.jellyfin.entryPoints=websecure
-      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.gregvanko.com`)
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.vanko.be`)
       - traefik.http.routers.jellyfin.tls=true
       - traefik.http.routers.jellyfin.tls.certResolver=cloudflare
       ## Middleware
@@ -26,12 +26,14 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - JELLYFIN_PublishedServerUrl=http://example.com
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.vanko.be
     networks:
       - frontend
+
 networks:
   frontend:
     external: true
+
 volumes:
   Nas-Docker-Video:
     driver: local
