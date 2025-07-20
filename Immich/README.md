@@ -13,4 +13,9 @@ Dans le fichier docker compose il faut changer:
 ## Variable d'environnement
 |Variable|Definition|
 |---|----|
-|CF_DNS_API_TOKEN|API Key CloudFlare pour changer une valeur du DNS afin de vérifier et créer le certificat TLS pour les routs HTTPS|
+|UPLOAD_LOCATION|Localisation de la librairie principale et de l'endroit ou le photos seront uploadées|
+|DB_DATA_LOCATION|Localisation de la base de donnée|
+|IMMICH_VERSION|Version du serveur immich|
+|DB_PASSWORD|Password de la DB|
+|DB_USERNAME|Le UserName de la DB|
+|DB_DATABASE|Le nom de la DB|
