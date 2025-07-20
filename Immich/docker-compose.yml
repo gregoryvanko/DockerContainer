@@ -17,6 +17,7 @@ services:
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - Nas-Docker-Photo:/Nas
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -28,6 +29,13 @@ services:
     restart: always
     healthcheck:
       disable: false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich-https.entrypoints=websecure"
+      - "traefik.http.routers.immich-https.tls=true"
+      - "traefik.http.routers.immich-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.immich-https.rule=Host(`fbquantum.vanko.be`)"
+      - "traefik.http.services.immich-https.loadbalancer.server.port=2283"
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -38,7 +46,7 @@ services:
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
-      - model-cache:/cache
+      - .Config/model-cache:/cache
     env_file:
       - .env
     restart: always
@@ -68,4 +76,9 @@ services:
     restart: always
 
 volumes:
-  model-cache:
+  Nas-Docker-Photo:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.10.23,ro,nolock,nfsvers=3
+      device: ":/var/nfs/shared/Photos"
