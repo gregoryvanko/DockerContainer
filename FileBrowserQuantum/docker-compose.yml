@@ -16,7 +16,7 @@ services:
       - "traefik.http.routers.fbquantum-https.entrypoints=websecure"
       - "traefik.http.routers.fbquantum-https.tls=true"
       - "traefik.http.routers.fbquantum-https.tls.certresolver=cloudflare"
-      - "traefik.http.routers.fbquantum-https.rule=Host(`fbquantum.vanko.be`)"
+      - "traefik.http.routers.fbquantum-https.rule=Host(`file.vanko.be`)"
       - "traefik.http.services.fbquantum-https.loadbalancer.server.port=80"
     networks:
       - frontend
