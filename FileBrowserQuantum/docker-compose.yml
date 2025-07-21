@@ -31,5 +31,5 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=192.168.10.23,rw,nolock
+      o: addr=192.168.10.23,rw,nolock,nfsvers=3
       device: ":/var/nfs/shared/Data"
