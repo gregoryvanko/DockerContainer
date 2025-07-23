@@ -15,6 +15,7 @@ Dans le fichier docker compose il faut changer:
 |---|----|
 |UPLOAD_LOCATION|Localisation de la librairie principale et de l'endroit ou le photos seront uploadées|
 |DB_DATA_LOCATION|Localisation de la base de donnée|
+|LEARNING_CACHE_LOCATION|Localisation de la cache du machine learning|
 |IMMICH_VERSION|Version du serveur immich|
 |DB_PASSWORD|Password de la DB|
 |DB_USERNAME|Le UserName de la DB|
