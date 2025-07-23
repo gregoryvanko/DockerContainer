@@ -16,11 +16,11 @@ services:
       - 8200:8200
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fbquantum-https.entrypoints=websecure"
-      - "traefik.http.routers.fbquantum-https.tls=true"
-      - "traefik.http.routers.fbquantum-https.tls.certresolver=cloudflare"
-      - "traefik.http.routers.fbquantum-https.rule=Host(`backup.vanko.be`)"
-      - "traefik.http.services.fbquantum-https.loadbalancer.server.port=8200"
+      - "traefik.http.routers.duplicati-https.entrypoints=websecure"
+      - "traefik.http.routers.duplicati-https.tls=true"
+      - "traefik.http.routers.duplicati-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.duplicati-https.rule=Host(`backup.vanko.be`)"
+      - "traefik.http.services.duplicati-https.loadbalancer.server.port=8200"
     networks:
       - frontend
     restart: unless-stopped
