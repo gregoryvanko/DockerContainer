@@ -4,7 +4,7 @@ services:
     container_name: fbquantum
     environment:
       FILEBROWSER_CONFIG: "data/config.yaml"
-      FILEBROWSER_ADMIN_PASSWORD: admin
+      FILEBROWSER_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
       - ./Config:/home/filebrowser/data
       - ./Config/tmp/:/home/filebrowser/tmp/
