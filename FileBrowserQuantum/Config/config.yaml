@@ -15,13 +15,15 @@ server:
         defaultEnabled: true         # this gives the source to all users by default.
         createUserDir: true          # "/Users/username" directory will be created
         disableIndexing: false         # if set to true, nothing gets indexed but is still viewable in the UI
-    - path: "/folder/Share"
-      name: "Share"
-      config:
-        defaultUserScope: "/"
-        defaultEnabled: false
-        createUserDir: false
-        disableIndexing: false
+    - path: "/folder/Famille"
+    - path: "/folder/Logement"
+#    - path: "/folder/Share"
+#      name: "Share"
+#      config:
+#        defaultUserScope: "/"
+#        defaultEnabled: false
+#        createUserDir: false
+#        disableIndexing: false
   externalUrl: "file.vanko.be"                         # used by share links if set
   # internalUrl: ""                         # used by integrations if set, this is the url that an integration service will use to communicate with filebrowser
   cacheDir: "tmp"                         # path to the cache directory, used for thumbnails and other cached files
