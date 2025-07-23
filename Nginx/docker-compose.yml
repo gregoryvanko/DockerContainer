@@ -4,7 +4,7 @@ services:
     container_name: nginx
     volumes:
       - ./Config/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - Nas-Docker-Test-Nginx:/usr/share/nginx/html
+      - ./Config/html:/usr/share/nginx/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
@@ -18,11 +18,3 @@ services:
 networks:
   frontend:
     external: true
-
-volumes:
-  Nas-Docker-Test-Nginx:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=192.168.10.23,rw,nolock,nfsvers=3
-      device: ":/var/nfs/shared/Docker/Test/Nginx/Html"
