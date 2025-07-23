@@ -5,7 +5,7 @@ Avant de déployer le container, il faut créer:
 - un reseau externe frontend
 - le fichier "config.yaml" sous ./Config/config.yaml
 - le répertoire "tmp" sous ./Config/tmp/
-- le répertoire "Users" sur le Nas sous Nas-Docker-Data/Users
+- le répertoire "Data" sur le Nas sous Nas-Docker-Data
 
 Dans le fichier docker compose il faut changer:
 - le nom du host traefik de la section labels
