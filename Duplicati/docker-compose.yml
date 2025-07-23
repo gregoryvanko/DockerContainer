@@ -1,0 +1,38 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Brussels
+      - SETTINGS_ENCRYPTION_KEY= ${ENCRYPTION_KEY}
+      - DUPLICATI__WEBSERVICE_PASSWORD= ${PASSWORD}
+    volumes:
+      - ./Config:/config
+      - /Docker-Stacks:/source
+      - Nas-Proxmox-DockerBackup:/backups
+    ports:
+      - 8200:8200
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fbquantum-https.entrypoints=websecure"
+      - "traefik.http.routers.fbquantum-https.tls=true"
+      - "traefik.http.routers.fbquantum-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.fbquantum-https.rule=Host(`backup.vanko.be`)"
+      - "traefik.http.services.fbquantum-https.loadbalancer.server.port=8200"
+    networks:
+      - frontend
+    restart: unless-stopped
+
+networks:
+  frontend:
+    external: true
+
+volumes:
+  Nas-Proxmox-DockerBackup:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.10.23,rw,nolock,nfsvers=3
+      device: ":/var/nfs/shared/Proxmox/DockerBackup/Prod"
