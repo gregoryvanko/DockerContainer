@@ -14,4 +14,4 @@ Dans le fichier docker compose il faut changer:
 |Variable|Definition|
 |---|----|
 |GF_SECURITY_ADMIN_USER|Le user du compte admin|
-|GF_SECURITY_ADMIN_PASSWORD|LeMP du compte admin|
+|GF_SECURITY_ADMIN_PASSWORD|Le MP du compte admin|
