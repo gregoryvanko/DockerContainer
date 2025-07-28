@@ -1,0 +1,28 @@
+services:
+  influxdb:
+    image: influxdb:2.6
+    container_name: influxdb
+    volumes:
+      - ./Config/data:/var/lib/influxdb2
+      - ./Config/config:/etc/influxdb2
+    restart: unless-stopped
+    environment:
+     - DOCKER_INFLUXDB_INIT_MODE=setup
+     - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME:?error}
+     - DOCKER_INFLUXDB_INIT_PASSWORD=${DOCKER_INFLUXDB_INIT_PASSWORD:?error}
+     - DOCKER_INFLUXDB_INIT_ORG=${DOCKER_INFLUXDB_INIT_ORG:?error}
+     - DOCKER_INFLUXDB_INIT_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET:?error}
+    ports:
+       - 8086:8086
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.influxdb.entryPoints=websecure
+      - traefik.http.routers.influxdb.rule=Host(`influxdb.vanko.be`)
+      - traefik.http.routers.influxdb.tls=true
+      - traefik.http.routers.influxdb.tls.certResolver=cloudflare
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
