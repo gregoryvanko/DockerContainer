@@ -1,0 +1,5 @@
+[default]
+  url = "http://localhost:8086"
+  token = "T5YPtOxiQ6OnxxeSxHzLV4YT-feAx_kEBO4uFinKgLMwWsnuotZnNu9kD1ehvSWFNurElmB00E-NJj84wNV7-w=="
+  org = "vanko"
+  active = true
