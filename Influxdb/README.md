@@ -5,7 +5,6 @@ Avant de déployer le container, il faut créer:
 - un reseau externe frontend
 - le fichier "influx-configs" sous ./Config/config/influx-configs
 - le répertoire "data" sous ./Config/data/
-- le répertoire "log" sous ./Config/log/
 - le fichier .env avec sont contenu
 
 Dans le fichier docker compose il faut changer:
@@ -13,5 +12,7 @@ Dans le fichier docker compose il faut changer:
 ## Variable d'environnement
 |Variable|Definition|
 |---|----|
-|GF_SECURITY_ADMIN_USER|Le user du compte admin|
-|GF_SECURITY_ADMIN_PASSWORD|Le MP du compte admin|
+|DOCKER_INFLUXDB_INIT_USERNAME|Le user du compte admin|
+|DOCKER_INFLUXDB_INIT_PASSWORD|Le MP du compte admin|
+|DOCKER_INFLUXDB_INIT_ORG|Le nom de l'organisation|
+|DOCKER_INFLUXDB_INIT_BUCKET|Le nom du Bucket|
