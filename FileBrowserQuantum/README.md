@@ -1,5 +1,5 @@
 # FileBrowser Quantum
-Ce conteneur sert est un Web File Browser
+Ce conteneur sert de Web File Browser
 ## Installation
 Avant de déployer le container, il faut créer:
 - un reseau externe frontend
