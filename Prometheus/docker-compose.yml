@@ -14,7 +14,7 @@ services:
 
 	prometheus-node-exporter:
 		image: prom/node-exporter:latest
-		container_name: Prometheus-node-exporter
+		container_name: prometheus-node-exporter
 		restart: unless-stopped
 		volumes:
 			- /proc:/host/proc:ro
