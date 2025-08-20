@@ -1,49 +1,51 @@
 services:
-	prometheus:
-		image: prom/prometheus:latest
-		container_name: prometheus
-		ports:
-			- 9090:9090
-		command: "--config.file=/etc/prometheus/prometheus.yaml"
-		volumes:
-			- ./Config/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
-			- ./Config/data:/prometheus
-		restart: unless-stopped
-		networks:
-			- frontend
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    user: root
+    ports:
+      - 9090:9090
+    command: "--config.file=/etc/prometheus/prometheus.yaml"
+    volumes:
+      - ./Config/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - ./Config/data:/prometheus
+    restart: unless-stopped
+    networks:
+      - frontend
 
-	prometheus-node-exporter:
-		image: prom/node-exporter:latest
-		container_name: prometheus-node-exporter
-		restart: unless-stopped
-		volumes:
-			- /proc:/host/proc:ro
-			- /sys:/host/sys:ro
-			- /:/rootfs:ro
-		command:
-			- '--path.procfs=/host/proc'
-			- '--path.rootfs=/rootfs'
-			- '--path.sysfs=/host/sys'
-			- '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-		ports:
-			- 9100:9100   
-		networks:
-			- frontend
-   	prometheus-cadvisor:
-		image: gcr.io/cadvisor/cadvisor:latest
-    	container_name: prometheus-cadvisor
-    	volumes:
-      		- /:/rootfs:ro
-      		- /var/run:/var/run:rw
-      		- /sys:/sys:ro
-      		- /var/lib/docker/:/var/lib/docker:ro
-      		- /dev/disk/:/dev/disk:ro
-    	ports:
-      		- 8080:8080
-    	networks:
-      		- frontend
-    	restart: unless-stopped
+  prometheus-node-exporter:
+    image: prom/node-exporter:latest
+    container_name: prometheus-node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+    networks:
+      - frontend
+
+  prometheus-cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: prometheus-cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - 8089:8080
+    networks:
+      - frontend
+    restart: unless-stopped
 
 networks:
-	frontend:
-		external: true
+  frontend:
+    external: true
