@@ -26,7 +26,7 @@ scrape_configs:
   - job_name: 'Prod'
     scrape_interval: 15s
     static_configs:
-      - targets: [srv-prod-1.home.clcreative.de:9100]
+      - targets: [prometheus-node-exporter:9100]
 
   # Example job for node_exporter
   # - job_name: 'node_exporter'
