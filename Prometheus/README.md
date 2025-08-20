@@ -7,4 +7,4 @@ Avant de déployer le container, il faut créer:
 - le répertoire "data" sous ./Config/data/
 
 ## Note
-Traefik ne sera pas utiliser car il n'est pas nécessaire de pouvoir accéder à prometheus depuis le wan
+Traefik ne sera pas utilisé car il n'est pas nécessaire de pouvoir accéder à prometheus depuis le wan
