@@ -1,0 +1,33 @@
+services:
+  codeserver:
+    build:
+      context: .
+    container_name: codeserver
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Brussels
+      - PASSWORD=${PASSWORD:?error}
+      - SUDO_PASSWORD=${SUDO_PASSWORD:?error}
+      - PROXY_DOMAIN=${PROXY_DOMAIN:?error}
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+      - PWA_APPNAME=code-server #optional
+    volumes:
+      - ./Config:/config
+      - ./Projets:/projets
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8443:8443
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vs-https.entrypoints=websecure"
+      - "traefik.http.routers.vs-https.tls=true"
+      - "traefik.http.routers.vs-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.vs-https.rule=Host(`vs.gregvanko.com`) || Host(`9999.gregvanko.com`)"
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
