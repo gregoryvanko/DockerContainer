@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    volumes:
+      - ./Data:/data/db
+    restart: unless-stopped
+    networks:
+      - frontend
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+    environment:
+    #  ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USERNAME:?error}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD:?error}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.mongoexpress.entryPoints=websecure
+      - traefik.http.routers.mongoexpress.rule=Host(`mongo.gregvanko.com`)
+      - traefik.http.routers.mongoexpress.tls=true
+      - traefik.http.routers.mongoexpress.tls.certResolver=cloudflare
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
