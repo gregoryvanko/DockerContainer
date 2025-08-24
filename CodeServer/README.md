@@ -16,3 +16,5 @@ Dans le fichier docker compose il faut changer:
 |PASSWORD|Le password pour ouvrir Visual studio|
 |SUDO_PASSWORD|Le password SUDO pour le terminal|
 |PROXY_DOMAIN|Le nom de domain pour le proxy des ports ouverts via le code d'une application|
+## Note
+l'adresse pour ouvrir une web app que l'on developpe est 9999.gregvanko.com
