@@ -1,0 +1,9 @@
+FROM lscr.io/linuxserver/code-server:latest
+USER root
+RUN sudo curl -sSL https://get.docker.com | sh
+RUN usermod -aG docker root
+#RUN sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+RUN sudo curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo npm install -g nodemon
+RUN sudo npm install -g npm@latest
