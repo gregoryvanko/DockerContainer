@@ -1,0 +1,20 @@
+services:
+  aquagreen:
+    container_name: aquagreen
+    image : gregoryvanko/aquagreen
+  #  ports:
+  #    - 9999:9999
+    environment:
+      - MONGOURL=mongodb://mongo:27017
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.aquagreen.entryPoints=websecure
+      - traefik.http.routers.aquagreen.rule=Host(`aquagreen.vanko.be`)
+      - traefik.http.routers.aquagreen.tls=true
+      - traefik.http.routers.aquagreen.tls.certResolver=cloudflare
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
