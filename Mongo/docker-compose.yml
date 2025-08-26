@@ -3,8 +3,8 @@ services:
     image: mongo
     container_name: mongo
     volumes:
-      - ./Data:/data/db
-      - ./Data:/data/configdb
+      - ./Data/db:/data/db
+      - ./Data/configdb:/data/configdb
     restart: unless-stopped
     networks:
       - frontend
