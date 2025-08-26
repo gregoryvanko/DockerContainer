@@ -24,7 +24,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.mongoexpress.entryPoints=websecure
-      - traefik.http.routers.mongoexpress.rule=Host(`mongo.gregvanko.com`)
+      - traefik.http.routers.mongoexpress.rule=Host(`mongo.vanko.be`)
       - traefik.http.routers.mongoexpress.tls=true
       - traefik.http.routers.mongoexpress.tls.certResolver=cloudflare
     networks:
