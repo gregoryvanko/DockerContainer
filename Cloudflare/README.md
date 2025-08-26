@@ -3,6 +3,7 @@ Ce container permet de mettre en place une tunel CloudFlare vers une application
 ## Installation
 Avant de déployer le container, il faut créer :
 - un reseau externe frontend
+- le fichier .env avec sont contenu
 ## Variable d'environnement
 |Variable|Definition|
 |---|----|
