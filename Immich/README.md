@@ -4,8 +4,9 @@ Ce conteneur permet de gérer une librairie de photos
 Avant de déployer le container, il faut créer:
 - un reseau externe frontend
 - le répertoire "upload" sous ./Config/upload/
-- les répertoires "model-cache" sous ./Config/model-cache/
-- les répertoires "postgresql" sous ./Config/postgresql/
+- le répertoire "model-cache" sous ./Config/model-cache/
+- le répertoire "postgresql" sous ./Config/postgresql/
+- le répertoire "data" sous ./Config/data
 - le fichier .env avec sont contenu
 
 Dans le fichier docker compose il faut changer:
