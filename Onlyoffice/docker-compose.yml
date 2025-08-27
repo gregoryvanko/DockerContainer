@@ -1,0 +1,36 @@
+services:
+  onlyoffice:
+    image: onlyoffice/documentserver
+    container_name: onlyoffice
+    ports:
+      - 7080:80
+    volumes:
+      - ./Config/logs:/var/log/onlyoffice
+      - ./Config/data:/var/www/onlyoffice/Data
+      - ./Config/lib:/var/lib/onlyoffice
+      - ./Config/db:/var/lib/postgresql
+      - ./Config/data:/var/lib/rabbitmq
+      - ./Config/data:/usr/share/fonts/truetype/custom
+      - ./Config/lib:/var/lib/redis
+    environment:
+      - JWT_SECRET=${JWT_SECRET:?error}
+      - JWT_ENABLED=true
+      - USE_UNAUTHORIZED_STORAGE=true
+      - JWT_HEADER=AuthorizationJwt
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.onlyoffice-https.entrypoints=websecure"
+      - "traefik.http.routers.onlyoffice-https.tls=true"
+      - "traefik.http.routers.onlyoffice-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.onlyoffice-https.rule=Host(`onlyoffice.vanko.be`)"
+      - "traefik.passHostHeader=true"
+      - "traefik.http.routers.onlyoffice-https.middlewares=onlyoffice-headers"
+      - "traefik.http.middlewares.onlyoffice-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.middlewares.onlyoffice-headers.headers.accessControlAllowOriginList=*"
+    networks:
+      - frontend
+    restart: unless-stopped
+
+networks:
+  frontend:
+    external: true
