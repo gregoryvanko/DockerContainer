@@ -10,6 +10,7 @@ services:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - Nas-Docker-Photo:/Nas
       - /etc/localtime:/etc/localtime:ro
+      - ./Config/data:/data
     env_file:
       - .env
     ports:
