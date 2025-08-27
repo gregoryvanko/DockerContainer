@@ -54,6 +54,8 @@ services:
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
+    volumes:
+      - ./Config/data:/data
     networks:
       - frontend
 
