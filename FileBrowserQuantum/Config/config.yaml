@@ -4,8 +4,8 @@ server:
   disablePreviews: true                  # disable all previews thumbnails, simple icons will be used
   disablePreviewResize: true             # disable resizing of previews for faster loading over slow connections
   logging:
-    - levels: "error"
-      apiLevels: "error"
+    - levels: "info|debug|warning|error"
+      apiLevels: "info|debug|warning|error"
   database: "./data/database.db"                 # path to the database file
   sources:
     - path: "/folder"
@@ -17,15 +17,8 @@ server:
         disableIndexing: false         # if set to true, nothing gets indexed but is still viewable in the UI
     - path: "/folder/Famille"
     - path: "/folder/Logement"
-#    - path: "/folder/Share"
-#      name: "Share"
-#      config:
-#        defaultUserScope: "/"
-#        defaultEnabled: false
-#        createUserDir: false
-#        disableIndexing: false
-  externalUrl: "file.vanko.be"                         # used by share links if set
-  # internalUrl: ""                         # used by integrations if set, this is the url that an integration service will use to communicate with filebrowser
+  externalUrl: "https://file.vanko.be"                         # used by share links if set
+  internalUrl: "https://file.vanko.be"                         # used by integrations if set, this is the url that an integration service will use to communicate with filebrowser
   cacheDir: "tmp"                         # path to the cache directory, used for thumbnails and other cached files
   maxArchiveSize: 5                      # max pre-archive combined size of files/folder that are allowed to be archived (in GB)
 frontend:
@@ -81,5 +74,9 @@ userDefaults:
     realtime: false
   loginMethod: "password"                 # login method to use: eg. password, proxy, oidc
 integrations:
+  office:                                 #  validate:omitempty
+    url: "https://onlyoffice.vanko.be"                               # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
+    internalUrl: "http://192.168.40.40:7080"                       # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
+    secret: "gregoryvk"                            #  validate:required
   media:
     ffmpegPath: "/usr/local/bin"          # wherever you have both ffmpeg and ffprobe installed at
