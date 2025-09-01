@@ -4,6 +4,9 @@ services:
     container_name: nginx
     volumes:
       - ./Config/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./Config/sites-enabled:/etc/nginx/sites-enabled
+      - ./www:/var/www/
+      - ./Log:/var/log/nginx
       - ./Config/html:/usr/share/nginx/html
     labels:
       - "traefik.enable=true"
