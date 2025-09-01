@@ -9,10 +9,11 @@ services:
       - ./Log:/var/log/nginx
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
-      - "traefik.http.routers.nginx-demo-1-https.rule=Host(`memento.gregvanko.com`) || Host(`memorx.vanko.be`) "
-      - "traefik.http.routers.nginx-demo-1-https.tls=true"
-      - "traefik.http.routers.nginx-demo-1-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.nginx-https.entrypoints=websecure"
+      - "traefik.http.routers.nginx-https.rule=Host(`memento.gregvanko.com`) || Host(`memorx.vanko.be`) "
+      - "traefik.http.routers.nginx-https.tls=true"
+      - "traefik.http.routers.nginx-https.tls.certresolver=cloudflare"
+      - "traefik.http.services.nginx-https.loadbalancer.server.port=80"
     networks:
       - frontend
     restart: unless-stopped
