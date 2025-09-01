@@ -7,7 +7,6 @@ services:
       - ./Config/sites-enabled:/etc/nginx/sites-enabled
       - ./www:/var/www/
       - ./Log:/var/log/nginx
-      - ./Config/html:/usr/share/nginx/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx-demo-1-https.entrypoints=websecure"
