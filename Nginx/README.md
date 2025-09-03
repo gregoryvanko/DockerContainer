@@ -1,5 +1,5 @@
 # Nginx
-Ce container est un serveur web de test
+Ce container est un serveur web
 ## Installation
 Avant de déployer le container, il faut créer :
 - un reseau externe frontend
