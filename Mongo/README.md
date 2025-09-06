@@ -14,3 +14,12 @@ Dans le fichier docker compose il faut changer:
 |---|----|
 |MONGO_EXPRESS_USERNAME|Le username pour la Web App Mongo-Express|
 |MONGO_EXPRESS_PASSWORD|Le password pour la Web App Mongo-Express|
+## Dump and Restore
+Dump
+```
+Docker exec mongo-container-name sh -c 'mongodump --db Aquagreen --archive' > db.dump
+```
+Restore
+```
+Docker exec -i mongo-container-name sh -c 'mongorestore --db Aquagreen --archive' < db.dump
+```
