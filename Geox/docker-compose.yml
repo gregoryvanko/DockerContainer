@@ -12,6 +12,7 @@ services:
       - traefik.http.routers.geox.rule=Host(`geox.vanko.be`)
       - traefik.http.routers.geox.tls=true
       - traefik.http.routers.geox.tls.certResolver=cloudflare
+    restart: unless-stopped
     networks:
       - frontend
 
