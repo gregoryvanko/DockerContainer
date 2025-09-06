@@ -32,6 +32,8 @@ services:
       - "traefik.http.routers.nginx-https.tls.certresolver=cloudflare"
       - "traefik.http.services.nginx-https.loadbalancer.server.port=80"
     restart: unless-stopped
+    depends_on:
+      - memento
     networks:
       - frontend
 
