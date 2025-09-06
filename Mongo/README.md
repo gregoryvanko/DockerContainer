@@ -17,9 +17,9 @@ Dans le fichier docker compose il faut changer:
 ## Dump and Restore
 Dump
 ```
-Docker exec mongo-container-name sh -c 'mongodump --db Aquagreen --archive' > db.dump
+docker exec mongo-container-name sh -c 'mongodump --db Aquagreen --archive' > db.dump
 ```
 Restore
 ```
-Docker exec -i mongo-container-name sh -c 'mongorestore --db Aquagreen --archive' < db.dump
+docker exec -i mongo-container-name sh -c 'mongorestore --db Aquagreen --archive' < db.dump
 ```
