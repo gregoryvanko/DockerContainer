@@ -12,6 +12,7 @@ services:
       - traefik.http.routers.aquagreen.rule=Host(`aquagreen.vanko.be`)
       - traefik.http.routers.aquagreen.tls=true
       - traefik.http.routers.aquagreen.tls.certResolver=cloudflare
+    restart: unless-stopped
     networks:
       - frontend
 
