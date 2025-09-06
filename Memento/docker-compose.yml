@@ -1,0 +1,40 @@
+services:
+  memento:
+    container_name: memento
+    image : gregoryvanko/memento
+    volumes:
+      - ./Nginx/www/Icon:/usr/src/app/Icon
+    environment:
+      - APP_ICON=/usr/src/app/Icon/IconBrown.png
+      - APP_NAME=Memento
+    ports:
+      - 9999:9999
+    restart: unless-stopped
+    networks:
+      - frontend
+
+  nginx:
+    image: lscr.io/linuxserver/nginx:latest
+    container_name: nginx
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./Nginx/Sites-enabled:/config/nginx/site-confs
+      - ./Nginx/www:/config/www
+      - ./Nginx/Log:/config/log/nginx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx-https.entrypoints=websecure"
+      - "traefik.http.routers.nginx-https.rule=Host(`memento.vanko.be`)"
+      - "traefik.http.routers.nginx-https.tls=true"
+      - "traefik.http.routers.nginx-https.tls.certresolver=cloudflare"
+      - "traefik.http.services.nginx-https.loadbalancer.server.port=80"
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
