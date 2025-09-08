@@ -1,0 +1,19 @@
+services:
+  excalidraw:
+    container_name: excalidraw
+    image: excalidraw/excalidraw:latest
+    ports:
+      - "3030:80"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.excalidraw.entryPoints=websecure
+      - traefik.http.routers.excalidraw.rule=Host(`excalidraw.vanko.be`)
+      - traefik.http.routers.excalidraw.tls=true
+      - traefik.http.routers.excalidraw.tls.certResolver=cloudflare
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
