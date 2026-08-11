@@ -34,11 +34,14 @@ services:
   prometheus-cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: prometheus-cadvisor
-    command:
-      - "--housekeeping_interval=30s"
-      - "--docker_only=true"
-      - "--disable_metrics=accel,cpu_topology,disk,diskIO,hugetlb,memory_numa,percpu,referenced_memory,resctrl,sched,tcp,udp,advtcp"
-    volumes:
+  	command:
+      - '--housekeeping_interval=30s'
+      - '--max_housekeeping_interval=35s'
+      - '--disable_metrics=percpu,sched,tcp,advtcp,udp,process,hugetlb,referenced_memory,cpu_topology,resctrl,memory_numa,cpuset'
+      - '--docker_only=true'
+      - '--store_container_labels=false'
+    privileged: true  
+		volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
