@@ -2,13 +2,27 @@ http:
   routers:
     # Define a connection between requests and services
     to-hydro:
-      rule: "Host(`hydro.vanko.be`)"
+      rule: "Host(`hydro.vanko.be`) && (PathPrefix(`/dashboard`) || PathPrefix(`/resources`))"
       # If the rule matches, forward to the whoami service (declared below)
       service: hydro
       entryPoints:
         - "websecure"
+      middlewares:
+        - hydro-auth 
       tls:
         certResolver: cloudflare
+
+    # Redirection de la racine vers /dashboard/
+    hydro-root:
+      rule: "Host(`hydro.vanko.be`) && Path(`/`)"
+      entryPoints:
+        - "websecure"
+      middlewares:
+        - hydro-root-redirect
+      service: noop@internal
+      tls:
+        certResolver: cloudflare
+
     to-domo:
       rule: "Host(`domo.vanko.be`)"
       # If the rule matches, forward to the whoami service (declared below)
@@ -18,12 +32,24 @@ http:
       tls:
         certResolver: cloudflare
 
+  middlewares:
+    hydro-auth:
+      basicAuth:
+        usersFile: /etc/traefik/conf/hydro.htpasswd
+        realm: "Hydro"
+        removeHeader: true   # ne transmet pas les identifiants à Node-RED
+
+    hydro-root-redirect:
+      redirectRegex:
+        regex: "^https://hydro\\.vanko\\.be/?$"
+        replacement: "https://hydro.vanko.be/dashboard/"
+        permanent: false
   services:
     # Define how to reach an existing service on our infrastructure
     hydro:
       loadBalancer:
         servers:
-        - url: http://192.168.30.17:1880
+        - url: http://192.168.40.50:1881
     domo:
       loadBalancer:
         servers:
