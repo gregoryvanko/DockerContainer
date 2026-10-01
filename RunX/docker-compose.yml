@@ -1,7 +1,7 @@
 services:
   runx:
     container_name: runx
-    image : gregoryvanko/runx
+    image: gregoryvanko/runx
   #  ports:
   #    - 9999:9999
     environment:
