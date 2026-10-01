@@ -1,0 +1,29 @@
+services:
+  runx:
+    container_name: runx
+    image : gregoryvanko/runx
+  #  ports:
+  #    - 9999:9999
+    environment:
+      - PORT=${PORT:?error}
+      - MONGODB_URI=${MONGODB_URI:?error}
+      - MONGODB_DB=${MONGODB_DB:?error}
+      - ADMIN_LOGIN=${ADMIN_LOGIN:?error}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:?error}
+      - JWT_SECRET=${JWT_SECRET:?error}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:?error}
+      - LOG_RETENTION_DAYS=${LOG_RETENTION_DAYS:?error}
+      - TRUST_PROXY=${TRUST_PROXY:?error}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.runx.entryPoints=websecure
+      - traefik.http.routers.runx.rule=Host(`runx.vanko.be`)
+      - traefik.http.routers.runx.tls=true
+      - traefik.http.routers.runx.tls.certResolver=cloudflare
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
