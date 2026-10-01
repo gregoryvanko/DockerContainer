@@ -22,6 +22,9 @@ entryPoints:
           scheme: https
   websecure:
     address: :443
+    forwardedHeaders:
+      trustedIPs:
+        - "172.19.0.0/16"
 
 certificatesResolvers:
   cloudflare:
