@@ -1,4 +1,4 @@
-# RUnX
+# RunX
 Ce conteneur permet de visualiser des dashboards de courses
 ## Installation
 Avant de déployer le container, il faut créer:
