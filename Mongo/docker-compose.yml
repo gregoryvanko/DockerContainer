@@ -6,6 +6,8 @@ services:
       - ./Data/db:/data/db
       - ./Data/configdb:/data/configdb
     restart: unless-stopped
+    ports:
+      - "27017:27017"
     networks:
       - frontend
 
